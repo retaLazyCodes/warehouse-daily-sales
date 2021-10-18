@@ -17,7 +17,6 @@
 */
 
 // reactstrap components
-import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import { Card, CardBody, CardTitle, Container, CardImg, CardText, Button, Row, Col } from "reactstrap";
 
@@ -40,7 +39,7 @@ const Header = () => {
                   <CardImg
                     alt="..."
                     height="220px"
-                    src={require("assets/img/theme/caja.jpg").default}
+                    src={require("../../assets/img/theme/caja.jpg").default}
                     top
                   />
                   <CardBody>
@@ -64,7 +63,7 @@ const Header = () => {
                   <CardImg
                     alt="..."
                     height="220px"
-                    src={require("assets/img/theme/sales.jpg").default}
+                    src={require("../../assets/img/theme/sales.jpg").default}
                     top
                   />
                   <CardBody>
@@ -88,7 +87,7 @@ const Header = () => {
                   <CardImg
                     alt="..."
                     height="220px"
-                    src={require("assets/img/theme/producto.jpg").default}
+                    src={require("../../assets/img/theme/producto.jpg").default}
                     top
                   />
                   <CardBody>

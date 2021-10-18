@@ -1,5 +1,5 @@
 import Header from '../Headers/Header'
-import CashBoxProvider from "context/cashBox/Provider"
+import CashBoxProvider from "../../context/cashBox/Provider"
 import { Card, Container, Row } from "reactstrap"
 
 

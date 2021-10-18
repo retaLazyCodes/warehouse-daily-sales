@@ -5,8 +5,8 @@ import {
     Redirect
 } from "react-router-dom";
 
-import AdminLayout from "layouts/Admin.js";
-import AuthLayout from "layouts/Auth.js";
+import AdminLayout from "../layouts/Admin.js";
+import AuthLayout from "../layouts/Auth.js";
 import { useContext, useEffect } from "react";
 import AuthContext from "../context/auth";
 
