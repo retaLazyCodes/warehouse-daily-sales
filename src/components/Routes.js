@@ -2,30 +2,25 @@ import {
     BrowserRouter as Router,
     Route,
     Switch,
-    Redirect
+    Redirect,
 } from "react-router-dom";
 
 import AdminLayout from "../layouts/Admin.js";
 import AuthLayout from "../layouts/Auth.js";
-import { useContext, useEffect } from "react";
-import AuthContext from "../context/auth";
+import PrivateRoute from "./PrivateRoute.js";
 
 function Routes() {
-    const { userToken } = useContext(AuthContext)
-
-    useEffect(() => {
-        if (userToken == false) {
-            <Redirect to="/auth/login" />
-        }
-    }, [])
 
     return (
         <Router>
             <Switch>
-                <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+                <Route path="/admin" render={(props) =>
+                    <PrivateRoute>
+                        <AdminLayout {...props} />
+                    </PrivateRoute>
+                } />
                 <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
-
-                {userToken ? <Redirect from="/" to="/admin/index" /> : <Redirect to="/auth/login" />}
+                <Redirect from="/" to="/admin/index" />
 
             </Switch>
         </Router>
