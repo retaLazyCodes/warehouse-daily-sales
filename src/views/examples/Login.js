@@ -17,8 +17,9 @@
 */
 
 // reactstrap components
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 import {
   Button,
   Card,
@@ -35,8 +36,34 @@ import {
 } from "reactstrap";
 import AuthContext from "../../context/auth";
 
+import authService from '../../services/auth'
+
 const Login = () => {
   const { handleLogin } = useContext(AuthContext)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [redirectToReferrer, setRedirectToReferrer] = useState(false)
+  const history = useHistory()
+
+
+  const handleLoginButton = async (event) => {
+    event.preventDefault()
+    console.log('logging in with', email, password)
+
+    try {
+      const user = await authService.signIn({
+        email,
+        password
+      })
+
+      if (user) {
+        handleLogin(user)
+        history.push("/admin")
+      }
+    } catch (e) {
+      console.log("Wrong credentials")
+    }
+  }
 
   return (
     <>
@@ -55,6 +82,8 @@ const Login = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                    value={email}
+                    onChange={({ target }) => setEmail(target.value)}
                     placeholder="Email"
                     type="email"
                     autoComplete="new-email"
@@ -69,6 +98,8 @@ const Login = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                    value={password}
+                    onChange={({ target }) => setPassword(target.value)}
                     placeholder="Password"
                     type="password"
                     autoComplete="new-password"
@@ -76,13 +107,13 @@ const Login = () => {
                 </InputGroup>
               </FormGroup>
               <div className="text-center">
-                <Link
-                  to="/admin/index"
-                  className="btn btn-primary"
-                  onClick={() => handleLogin("123")}
+                <Button
+                  type="submit"
+                  color="primary"
+                  onClick={handleLoginButton}
                 >
-                  Iniciar Sesion
-                </Link>
+                  Iniciar Sesión
+                </Button>
               </div>
             </Form>
           </CardBody>
