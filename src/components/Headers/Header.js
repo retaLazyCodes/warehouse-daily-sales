@@ -28,8 +28,8 @@ const Header = () => {
           <div className="header-body">
             {/* Card stats */}
             <Row className="d-flex justify-content-around" style={{ padding: '0px' }}>
-              <Col lg="6" xl="3">
-                <Card style={{ width: "18rem" }} >
+              <Col md="6" lg="6" xl="3">
+                <Card style={{ width: "14rem" }} >
                   <CardTitle
                     tag="h5"
                     className="text-uppercase text-muted mt-3 ml-3"
@@ -38,7 +38,7 @@ const Header = () => {
                   </CardTitle>
                   <CardImg
                     alt="..."
-                    height="220px"
+                    height="200px"
                     src={require("../../assets/img/theme/caja.jpg").default}
                     top
                   />
@@ -53,7 +53,7 @@ const Header = () => {
                 </Card>
               </Col>
               <Col lg="6" xl="3">
-                <Card style={{ width: "18rem" }}>
+                <Card style={{ width: "14rem" }}>
                   <CardTitle
                     tag="h5"
                     className="text-uppercase text-muted mt-3 ml-3"
@@ -62,13 +62,13 @@ const Header = () => {
                   </CardTitle>
                   <CardImg
                     alt="..."
-                    height="220px"
+                    height="200px"
                     src={require("../../assets/img/theme/sales.jpg").default}
                     top
                   />
                   <CardBody>
                     <CardText>
-                      Informe e historial de ventas
+                      Historial de ventas
                     </CardText>
                     <Container style={{ display: 'flex', justifyContent: 'center' }}>
                       <Link to="/admin/sales" className="btn btn-primary">Ventas</Link>
@@ -77,7 +77,7 @@ const Header = () => {
                 </Card>
               </Col>
               <Col lg="6" xl="3">
-                <Card style={{ width: "18rem" }}>
+                <Card style={{ width: "14rem" }}>
                   <CardTitle
                     tag="h5"
                     className="text-uppercase text-muted mt-3 ml-3"
@@ -86,7 +86,7 @@ const Header = () => {
                   </CardTitle>
                   <CardImg
                     alt="..."
-                    height="220px"
+                    height="200xp"
                     src={require("../../assets/img/theme/producto.jpg").default}
                     top
                   />
@@ -95,7 +95,31 @@ const Header = () => {
                       Gestionar productos
                     </CardText>
                     <Container style={{ display: 'flex', justifyContent: 'center' }}>
-                      <Link to="/admin/products" className="btn btn-primary">Administrar productos</Link>
+                      <Link to="/admin/products" className="btn btn-primary">Productos</Link>
+                    </Container>
+                  </CardBody>
+                </Card>
+              </Col>
+              <Col lg="6" xl="3">
+                <Card style={{ width: "14rem" }}>
+                  <CardTitle
+                    tag="h5"
+                    className="text-uppercase text-muted mt-3 ml-3"
+                  >
+                    Administrar Categorias
+                  </CardTitle>
+                  <CardImg
+                    alt="..."
+                    height="200px"
+                    src={require("../../assets/img/theme/categorias.jpg").default}
+                    top
+                  />
+                  <CardBody>
+                    <CardText>
+                      Gestionar Categorias
+                    </CardText>
+                    <Container style={{ display: 'flex', justifyContent: 'center' }}>
+                      <Link to="/admin/products" className="btn btn-primary">Categorias</Link>
                     </Container>
                   </CardBody>
                 </Card>

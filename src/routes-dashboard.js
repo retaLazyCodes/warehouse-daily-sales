@@ -19,6 +19,7 @@ import Index from "./views/Index.js";
 import CashBox from "./components/CashBox";
 import Sales from "./components/Sales";
 import Products from "./components/Products";
+import Categories from "./components/Categories/index.js";
 
 var routes = [
   {
@@ -47,6 +48,13 @@ var routes = [
     name: "Productos",
     icon: "ni ni-tv-2 text-primary",
     component: Products,
+    layout: "/admin",
+  },
+  {
+    path: "/categories",
+    name: "Categorías",
+    icon: "ni ni-tv-2 text-primary",
+    component: Categories,
     layout: "/admin",
   },
 ];

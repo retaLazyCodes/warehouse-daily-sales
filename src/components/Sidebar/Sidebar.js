@@ -44,9 +44,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import Login from "../../views/examples/Login";
 
-var ps;
 
 const Sidebar = (props) => {
   const [collapseOpen, setCollapseOpen] = useState();

@@ -17,13 +17,11 @@
 */
 
 // reactstrap components
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useHistory, useLocation } from "react-router";
+import { useContext, useState } from "react";
+import { useHistory } from "react-router";
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   FormGroup,
   Form,
@@ -31,36 +29,28 @@ import {
   InputGroupAddon,
   InputGroupText,
   InputGroup,
-  Row,
   Col,
 } from "reactstrap";
-import AuthContext from "../../context/auth";
-import Spinner from "../../components/Spinner"
-import authService from '../../services/auth'
+import AuthContext from "../context/auth"
+import Spinner from "../components/Spinner"
+import authService from '../services/auth'
 
-const Login = () => {
+const Register = () => {
   const { handleLogin, handleLogout } = useContext(AuthContext)
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const history = useHistory()
-  const { fromDashboard } = useLocation()
 
-  if (fromDashboard != undefined) {
-    useEffect(() => {
-      {
-        handleLogout()
-      }
-    }, [])
-  }
-
-  const HandleLoginSubmit = async (event) => {
+  const HandleRegisterSubmit = async (event) => {
     event.preventDefault()
     setLoading(true)
-    console.log('logging in with', email, password)
+    console.log('register in with', name, email, password)
 
     try {
-      const user = await authService.signIn({
+      const user = await authService.signUp({
+        name,
         email,
         password
       })
@@ -71,26 +61,41 @@ const Login = () => {
         history.push("/admin")
       }
     } catch (e) {
-      alert("Wrong credentials")
+      alert("Error on register")
       setLoading(false)
     }
   }
 
+
   return (
     <>
       {
-
         loading
           ? <Spinner />
-          : <Col lg="5" md="7">
+          : <Col lg="6" md="8">
             <Card className="bg-secondary shadow border-0">
               <CardBody className="px-lg-5 py-lg-5">
                 <div className="text-center text-muted mb-4">
-                  <small>Sign in with credentials</small>
+                  <small>Sign up with credentials</small>
                 </div>
                 <Form role="form">
-                  <FormGroup className="mb-3">
-                    <InputGroup className="input-group-alternative">
+                  <FormGroup>
+                    <InputGroup className="input-group-alternative mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="ni ni-hat-3" />
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
+                        value={name}
+                        onChange={({ target }) => setName(target.value)}
+                        placeholder="Name"
+                        type="text"
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                  <FormGroup>
+                    <InputGroup className="input-group-alternative mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="ni ni-email-83" />
@@ -121,28 +126,18 @@ const Login = () => {
                       />
                     </InputGroup>
                   </FormGroup>
+
                   <div className="text-center">
-                    <Button
-                      type="submit"
+                    <Button className="mt-4"
                       color="primary"
-                      onClick={HandleLoginSubmit}
-                    >
-                      Iniciar Sesión
+                      type="button"
+                      onClick={HandleRegisterSubmit}>
+                      Create account
                     </Button>
                   </div>
-
                 </Form>
               </CardBody>
             </Card>
-            <Row className="mt-3">
-              <Col className="text-center" xs="">
-                <Link
-                  to="/auth/register"
-                >
-                  Crear una cuenta
-                </Link>
-              </Col>
-            </Row>
           </Col>
       }
 
@@ -150,4 +145,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
