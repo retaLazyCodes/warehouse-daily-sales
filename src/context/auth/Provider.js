@@ -3,24 +3,25 @@ import { useState } from "react";
 
 
 export default function AuthProvider({ children }) {
-    const [userToken, setUserToken] = useState(false)
+    const [user, setUser] = useState(false)
 
     const handleLogin = (token) => {
-        setUserToken(true);
+        setUser(true);
         window.sessionStorage.setItem("@user-token", JSON.stringify(token))
     }
 
     const handleLogout = () => {
-        setUserToken(false);
+        setUser(false);
         window.sessionStorage.removeItem("@user-token")
     }
 
-    const checkAuth = () => userToken;
+    const checkAuth = () => user;
 
     return (
         <AuthContext.Provider value={
             {
                 isAuthenticated: checkAuth,
+                setUser,
                 handleLogin,
                 handleLogout,
             }

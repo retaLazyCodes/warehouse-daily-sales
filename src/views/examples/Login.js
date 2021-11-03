@@ -17,9 +17,9 @@
 */
 
 // reactstrap components
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import {
   Button,
   Card,
@@ -35,19 +35,28 @@ import {
   Col,
 } from "reactstrap";
 import AuthContext from "../../context/auth";
-
+import Spinner from "../../components/Spinner"
 import authService from '../../services/auth'
 
 const Login = () => {
-  const { handleLogin } = useContext(AuthContext)
+  const { handleLogin, handleLogout } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [redirectToReferrer, setRedirectToReferrer] = useState(false)
+  const [loading, setLoading] = useState(false)
   const history = useHistory()
+  const { fromDashboard } = useLocation()
 
+  if (fromDashboard != undefined) {
+    useEffect(() => {
+      {
+        handleLogout()
+      }
+    }, [])
+  }
 
-  const handleLoginButton = async (event) => {
+  const HandleLoginSubmit = async (event) => {
     event.preventDefault()
+    setLoading(true)
     console.log('logging in with', email, password)
 
     try {
@@ -58,76 +67,85 @@ const Login = () => {
 
       if (user) {
         handleLogin(user)
+        setLoading(false)
         history.push("/admin")
       }
     } catch (e) {
-      console.log("Wrong credentials")
+      alert("Wrong credentials")
+      setLoading(false)
     }
   }
 
   return (
     <>
-      <Col lg="5" md="7">
-        <Card className="bg-secondary shadow border-0">
-          <CardBody className="px-lg-5 py-lg-5">
-            <div className="text-center text-muted mb-4">
-              <small>Sign in with credentials</small>
-            </div>
-            <Form role="form">
-              <FormGroup className="mb-3">
-                <InputGroup className="input-group-alternative">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-email-83" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    value={email}
-                    onChange={({ target }) => setEmail(target.value)}
-                    placeholder="Email"
-                    type="email"
-                    autoComplete="new-email"
-                  />
-                </InputGroup>
-              </FormGroup>
-              <FormGroup>
-                <InputGroup className="input-group-alternative">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-lock-circle-open" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    value={password}
-                    onChange={({ target }) => setPassword(target.value)}
-                    placeholder="Password"
-                    type="password"
-                    autoComplete="new-password"
-                  />
-                </InputGroup>
-              </FormGroup>
-              <div className="text-center">
-                <Button
-                  type="submit"
-                  color="primary"
-                  onClick={handleLoginButton}
+      {
+
+        loading
+          ? <Spinner />
+          : <Col lg="5" md="7">
+            <Card className="bg-secondary shadow border-0">
+              <CardBody className="px-lg-5 py-lg-5">
+                <div className="text-center text-muted mb-4">
+                  <small>Sign in with credentials</small>
+                </div>
+                <Form role="form">
+                  <FormGroup className="mb-3">
+                    <InputGroup className="input-group-alternative">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="ni ni-email-83" />
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
+                        value={email}
+                        onChange={({ target }) => setEmail(target.value)}
+                        placeholder="Email"
+                        type="email"
+                        autoComplete="new-email"
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                  <FormGroup>
+                    <InputGroup className="input-group-alternative">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="ni ni-lock-circle-open" />
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
+                        value={password}
+                        onChange={({ target }) => setPassword(target.value)}
+                        placeholder="Password"
+                        type="password"
+                        autoComplete="new-password"
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                  <div className="text-center">
+                    <Button
+                      type="submit"
+                      color="primary"
+                      onClick={HandleLoginSubmit}
+                    >
+                      Iniciar Sesión
+                    </Button>
+                  </div>
+
+                </Form>
+              </CardBody>
+            </Card>
+            <Row className="mt-3">
+              <Col className="text-center" xs="">
+                <Link
+                  to="/auth/register"
                 >
-                  Iniciar Sesión
-                </Button>
-              </div>
-            </Form>
-          </CardBody>
-        </Card>
-        <Row className="mt-3">
-          <Col className="text-center" xs="">
-            <Link
-              to="/auth/register"
-            >
-              Crear una cuenta
-            </Link>
+                  Crear una cuenta
+                </Link>
+              </Col>
+            </Row>
           </Col>
-        </Row>
-      </Col>
+      }
+
     </>
   );
 };

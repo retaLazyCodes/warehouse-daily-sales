@@ -23,11 +23,6 @@ import { PropTypes } from "prop-types";
 
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
   Collapse,
   DropdownMenu,
   DropdownItem,
@@ -45,12 +40,11 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Progress,
-  Table,
   Container,
   Row,
   Col,
 } from "reactstrap";
+import Login from "../../views/examples/Login";
 
 var ps;
 
@@ -242,7 +236,7 @@ const Sidebar = (props) => {
           <Nav className="mb-md-3" navbar>
             <NavItem className="active-pro active">
               <Link
-                to="/auth/login"
+                to={{ pathname: "/auth/login", fromDashboard: "/fromDashboard" }}
               >
                 <i class="fas fa-sign-out-alt"></i>
                 Cerrar Sesion

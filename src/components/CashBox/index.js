@@ -17,7 +17,6 @@ const CashBox = () => {
                         </div>
                     </Row>
                 </Container>
-
             </CashBoxProvider>
         </>
     )
