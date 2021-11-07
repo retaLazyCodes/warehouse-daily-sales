@@ -1,12 +1,18 @@
 import AuthContext from "./index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(false)
+    const [token, setToken] = useState()
 
-    const handleLogin = (token) => {
+    useEffect(() => {
+
+    }, [token]);
+
+    const handleLogin = ({ auth_token }) => {
         setUser(true);
+        setToken(auth_token)
         window.sessionStorage.setItem("@user-token", JSON.stringify(token))
     }
 
@@ -24,6 +30,7 @@ export default function AuthProvider({ children }) {
                 setUser,
                 handleLogin,
                 handleLogout,
+                token
             }
         }>
             {children}

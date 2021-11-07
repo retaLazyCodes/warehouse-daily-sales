@@ -28,7 +28,7 @@ const Header = () => {
           <div className="header-body">
             {/* Card stats */}
             <Row className="d-flex justify-content-around" style={{ padding: '0px' }}>
-              <Col md="6" lg="6" xl="3">
+              <Col sm="6" md="6" lg="6" xl="3">
                 <Card style={{ width: "14rem" }} >
                   <CardTitle
                     tag="h5"
@@ -52,7 +52,7 @@ const Header = () => {
                   </CardBody>
                 </Card>
               </Col>
-              <Col lg="6" xl="3">
+              <Col sm="6" md="6" lg="6" xl="3">
                 <Card style={{ width: "14rem" }}>
                   <CardTitle
                     tag="h5"
@@ -76,7 +76,7 @@ const Header = () => {
                   </CardBody>
                 </Card>
               </Col>
-              <Col lg="6" xl="3">
+              <Col sm="6" md="6" lg="6" xl="3">
                 <Card style={{ width: "14rem" }}>
                   <CardTitle
                     tag="h5"
@@ -100,7 +100,7 @@ const Header = () => {
                   </CardBody>
                 </Card>
               </Col>
-              <Col lg="6" xl="3">
+              <Col sm="6" md="6" lg="6" xl="3">
                 <Card style={{ width: "14rem" }}>
                   <CardTitle
                     tag="h5"
@@ -116,10 +116,10 @@ const Header = () => {
                   />
                   <CardBody>
                     <CardText>
-                      Gestionar Categorias
+                      Gestionar categorías
                     </CardText>
                     <Container style={{ display: 'flex', justifyContent: 'center' }}>
-                      <Link to="/admin/products" className="btn btn-primary">Categorias</Link>
+                      <Link to="/admin/categories" className="btn btn-primary">Categorias</Link>
                     </Container>
                   </CardBody>
                 </Card>

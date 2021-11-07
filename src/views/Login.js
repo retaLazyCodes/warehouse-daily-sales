@@ -66,6 +66,7 @@ const Login = () => {
       })
 
       if (user) {
+        console.log(user)
         handleLogin(user)
         setLoading(false)
         history.push("/admin")

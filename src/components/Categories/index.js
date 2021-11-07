@@ -1,9 +1,28 @@
 import Header from '../Headers/Header'
 import CashBoxProvider from "../../context/cashBox/Provider"
 import { Card, Container, Row } from "reactstrap"
+import { useContext, useEffect, useState } from 'react'
+import AuthContext from '../../context/auth'
+import categoriesService from '../../services/categories'
+import CategoriesTable from './CategoriesTable'
 
 
 function Categories() {
+    const { token } = useContext(AuthContext)
+    const [categories, setCategories] = useState([])
+
+    useEffect(() => {
+
+        console.log(token)
+        async function fetchCategories() {
+            const categories = await categoriesService.getCategories(token)
+            console.log(categories)
+            setCategories(categories)
+        }
+
+        fetchCategories()
+    }, [token])
+
     return (
         <>
             <Header />
@@ -12,7 +31,7 @@ function Categories() {
                     <Row>
                         <div className="col">
                             <Card className="shadow border-0">
-                                <h1>Acá van las categorias</h1>
+                                <CategoriesTable categories={categories} />
                             </Card>
                         </div>
                     </Row>
