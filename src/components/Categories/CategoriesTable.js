@@ -22,6 +22,7 @@ function CategoriesTable({ categories }) {
                         categories.map(c =>
                             <TableRow
                                 key={c.id}
+                                id={c.id}
                                 name={c.name}
                                 description={c.description}
                             />

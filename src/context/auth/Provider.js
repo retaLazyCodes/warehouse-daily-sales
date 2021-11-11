@@ -11,6 +11,7 @@ export default function AuthProvider({ children }) {
     }, [token]);
 
     const handleLogin = ({ auth_token }) => {
+        console.log(auth_token)
         setUser(true);
         setToken(auth_token)
         window.sessionStorage.setItem("@user-token", JSON.stringify(token))

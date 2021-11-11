@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const { REACT_APP_API_URL, REACT_APP_API_TOKEN } = process.env
+const { REACT_APP_API_URL } = process.env
 
 const signUp = async credentials => {
     const { data } = await axios.post(REACT_APP_API_URL + "/signup", credentials)

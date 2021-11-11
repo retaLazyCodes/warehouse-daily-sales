@@ -34,6 +34,7 @@ import {
 import AuthContext from "../context/auth"
 import Spinner from "../components/Spinner"
 import authService from '../services/auth'
+import Alert from "../components/alertService/AlertService";
 
 const Register = () => {
   const { handleLogin, handleLogout } = useContext(AuthContext)
@@ -46,7 +47,6 @@ const Register = () => {
   const HandleRegisterSubmit = async (event) => {
     event.preventDefault()
     setLoading(true)
-    console.log('register in with', name, email, password)
 
     try {
       const user = await authService.signUp({
@@ -61,7 +61,7 @@ const Register = () => {
         history.push("/admin")
       }
     } catch (e) {
-      alert("Error on register")
+      Alert.error("Ocurrió un error :(")
       setLoading(false)
     }
   }

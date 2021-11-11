@@ -37,6 +37,7 @@ import {
 import AuthContext from "../context/auth";
 import Spinner from "../components/Spinner"
 import authService from '../services/auth'
+import Alert from "../components/alertService/AlertService";
 
 const Login = () => {
   const { handleLogin, handleLogout } = useContext(AuthContext)
@@ -57,7 +58,6 @@ const Login = () => {
   const HandleLoginSubmit = async (event) => {
     event.preventDefault()
     setLoading(true)
-    console.log('logging in with', email, password)
 
     try {
       const user = await authService.signIn({
@@ -71,8 +71,9 @@ const Login = () => {
         setLoading(false)
         history.push("/admin")
       }
+
     } catch (e) {
-      alert("Wrong credentials")
+      Alert.error("Ocurrió un error :(")
       setLoading(false)
     }
   }

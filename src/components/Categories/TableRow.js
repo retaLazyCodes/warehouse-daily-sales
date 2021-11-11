@@ -5,7 +5,7 @@ import {
 
 const boldFont = { fontWeight: 'bold' }
 
-function TableRow({ name, description }) {
+function TableRow({ name, description, id }) {
     return (
         <tr>
             <td>
@@ -22,7 +22,7 @@ function TableRow({ name, description }) {
                 </Badge>
             </td>
 
-            <ActionCategory />
+            <ActionCategory id={id} />
         </tr>
     );
 }

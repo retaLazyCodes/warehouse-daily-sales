@@ -1,6 +1,6 @@
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 
-function ActionCategory() {
+function ActionCategory({ id }) {
     return (
         <td className="text-right">
             <UncontrolledDropdown>
