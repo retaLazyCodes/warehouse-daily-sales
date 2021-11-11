@@ -17,7 +17,24 @@ const getCategories = async (token) => {
     return data
 }
 
+const editCategory = async (token, id, category) => {
+    console.log(category)
+    const response = await fetch(`${BASE_URL}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+        },
+        body: JSON.stringify(category)
+    });
+    const data = response.json()
+
+    console.log(data)
+    return data
+}
+
 
 export default {
-    getCategories
+    getCategories,
+    editCategory,
 }

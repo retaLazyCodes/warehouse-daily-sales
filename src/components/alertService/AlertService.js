@@ -97,11 +97,11 @@ const tempNotify = (title, error = false) => {
 
 // Input type Text
 // Alert.inputText(titulo, OPCIONAL msg (DEFAULT: 'El campo no puede quedar vacío'))
-const inputText = async (title, msg = 'El campo no puede quedar vacío') => {
+const inputText = async (title, inputPlaceholder = title, msg = 'El campo no puede quedar vacío') => {
     const { value: text } = await alerts.fire({
         title,
         input: 'text',
-        inputPlaceholder: title,
+        inputPlaceholder,
         showCancelButton: true,
         inputValidator: (value) => {
             if (!value) {

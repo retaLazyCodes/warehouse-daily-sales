@@ -10,18 +10,17 @@ function TableRow({ box }) {
             <td >$ {box.egress}</td>
             <td className="td-actions text-right">
 
-                <button rel="tooltip" className="btn btn-info btn-just-icon btn-sm" data-original-title="" title="">
-                    <i className="fas fa-plus" title="Nuevo deposito"></i>
-
+                <button rel="tooltip" className="btn btn-info btn-just-icon btn-sm" data-original-title="" title="Nuevo deposito">
+                    <i className="fas fa-plus"></i>
                 </button>
-                <button type="button" rel="tooltip" className="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="">
-                    <i className="fas fa-minus" title="Nueva salida"></i>
+                <button type="button" rel="tooltip" className="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="Nueva salida">
+                    <i className="fas fa-minus" ></i>
                 </button>
-                <button type="button" rel="tooltip" className="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
-                    <i class="fas fa-dollar-sign" title="Contar efectivo"></i>
+                <button type="button" rel="tooltip" className="btn btn-success btn-just-icon btn-sm" data-original-title="" title="Contar efectivo">
+                    <i class="fas fa-dollar-sign" ></i>
                 </button>
-                <button type="button" rel="tooltip" className="btn btn-warning btn-just-icon btn-sm" data-original-title="" title="">
-                    <i className="fas fa-lock" title="Cerrar Caja"></i>
+                <button type="button" rel="tooltip" className="btn btn-warning btn-just-icon btn-sm" data-original-title="" title="Cerrar Caja">
+                    <i className="fas fa-lock" ></i>
                 </button>
             </td>
         </tr>
