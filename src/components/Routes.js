@@ -4,6 +4,7 @@ import {
     Switch,
     Redirect,
 } from "react-router-dom";
+import CategoryProvider from "../context/category/Provider.js";
 
 import AdminLayout from "../layouts/Admin.js";
 import AuthLayout from "../layouts/Auth.js";
@@ -16,7 +17,9 @@ function Routes() {
             <Switch>
                 <Route path="/admin" render={(props) =>
                     <PrivateRoute>
-                        <AdminLayout {...props} />
+                        <CategoryProvider>
+                            <AdminLayout {...props} />
+                        </CategoryProvider>
                     </PrivateRoute>
                 } />
                 <Route path="/auth" render={(props) => <AuthLayout {...props} />} />

@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
-import AuthContext from "../../context/auth";
+import { useGlobalToken } from "../../hooks/useGlobalToken";
+import CategoryContext from "../../context/category";
 import categoriesService from "../../services/categories";
 import Alert from "../alertService/AlertService";
 
 function ActionCategory({ id }) {
-    const { token } = useContext(AuthContext)
+    const token = useGlobalToken()
+    const { updateCategory } = useContext(CategoryContext)
 
     const handleEditClick = async (e) => {
         e.preventDefault()
@@ -22,6 +24,7 @@ function ActionCategory({ id }) {
                 const editedCategory = await categoriesService.editCategory(token, id, sendCategory)
 
                 if (editedCategory) {
+                    updateCategory(editedCategory)
                     Alert.success("Resultado", "Categoría actualizada")
                 } else {
                     Alert.error("Resultado", "No se ha podido actualizar la categoría")

@@ -4,7 +4,6 @@ import {
 import TableRow from "./TableRow";
 
 function CategoriesTable({ categories }) {
-
     return (
 
         <>

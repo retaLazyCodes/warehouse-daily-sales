@@ -1,27 +1,17 @@
 import Header from '../Headers/Header'
-import CashBoxProvider from "../../context/cashBox/Provider"
 import { Card, Container, Row } from "reactstrap"
-import { useContext, useEffect, useState } from 'react'
-import AuthContext from '../../context/auth'
-import categoriesService from '../../services/categories'
+import { useContext, useEffect } from 'react'
+import CashBoxProvider from "../../context/cashBox/Provider"
+import CategoryContext from '../../context/category/'
 import CategoriesTable from './CategoriesTable'
 
 
 function Categories() {
-    const { token } = useContext(AuthContext)
-    const [categories, setCategories] = useState([])
+    const { categories } = useContext(CategoryContext)
 
     useEffect(() => {
 
-        console.log(token)
-        async function fetchCategories() {
-            const categories = await categoriesService.getCategories(token)
-            console.log(categories)
-            setCategories(categories)
-        }
-
-        fetchCategories()
-    }, [])
+    }, [categories])
 
     return (
         <>
