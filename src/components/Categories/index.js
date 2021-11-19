@@ -4,6 +4,7 @@ import { useContext, useEffect } from 'react'
 import CashBoxProvider from "../../context/cashBox/Provider"
 import CategoryContext from '../../context/category/'
 import CategoriesTable from './CategoriesTable'
+import ShowModalButton from './ShowModalButton'
 
 
 function Categories() {
@@ -21,6 +22,8 @@ function Categories() {
                     <Row>
                         <div className="col">
                             <Card className="shadow border-0">
+                                <h1 style={{ textAlign: 'center' }}>Categorías</h1>
+                                <ShowModalButton />
                                 <CategoriesTable categories={categories} />
                             </Card>
                         </div>

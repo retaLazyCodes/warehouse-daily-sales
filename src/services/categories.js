@@ -12,13 +12,25 @@ const getCategories = async (token) => {
         }
     });
     const data = response.json()
+    return data
+}
 
-    console.log(data)
+const createCategory = async (token, category) => {
+
+    const response = await fetch(`${BASE_URL}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+        },
+        body: JSON.stringify(category)
+    });
+    const data = response.json()
     return data
 }
 
 const editCategory = async (token, id, category) => {
-    console.log(category)
+
     const response = await fetch(`${BASE_URL}/${id}`, {
         method: 'PUT',
         headers: {
@@ -28,8 +40,18 @@ const editCategory = async (token, id, category) => {
         body: JSON.stringify(category)
     });
     const data = response.json()
+    return data
+}
 
-    console.log(data)
+const deleteCategory = async (token, id) => {
+    const response = await fetch(`${BASE_URL}/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+        }
+    });
+    const data = response.json()
     return data
 }
 
@@ -37,4 +59,6 @@ const editCategory = async (token, id, category) => {
 export default {
     getCategories,
     editCategory,
+    deleteCategory,
+    createCategory
 }

@@ -11,7 +11,9 @@ export default function CategoryProvider({ children }) {
         async function fetchCategories() {
             const fetchedCategories = await categoriesService.getCategories(token)
             console.log(categories)
-            setCategories(fetchedCategories)
+            if (fetchedCategories != categories) {
+                setCategories(fetchedCategories)
+            }
         }
         fetchCategories()
     }, [])
@@ -24,12 +26,23 @@ export default function CategoryProvider({ children }) {
         setCategories(categoriesCopy)
     }
 
+    const addCategory = (newCategory) => {
+        setCategories([...categories, newCategory])
+    }
+
+    const removeCategory = (id) => {
+        const categoriesLeft = categories.filter(c => c.id != id)
+        setCategories(categoriesLeft)
+    }
+
 
     return (
         <CategoryContext.Provider value={{
             categories,
             setCategories,
             updateCategory,
+            removeCategory,
+            addCategory
         }}>
             {children}
         </CategoryContext.Provider>
