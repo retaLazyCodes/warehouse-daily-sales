@@ -1,12 +1,11 @@
 import { useContext, useState } from 'react';
-import CloseCashBox from './CloseCashBox'
-import OpenCashBox from './OpenCashBox'
+import CloseButton from './CloseButton'
+import OpenButton from './OpenButton'
 import Notification from './Notification'
 import CashBoxTable from './CashBoxTable'
 import CashBoxContext from '../../context/cashBox'
 
 function Home() {
-
     const [notification, setNotification] = useState(null)
     const { cashBoxOpen } = useContext(CashBoxContext)
 
@@ -19,13 +18,13 @@ function Home() {
                 {
                     cashBoxOpen ?
                         <>
-                            <CloseCashBox
+                            <CloseButton
                                 setNotification={setNotification}
                             />
 
                         </>
 
-                        : <OpenCashBox />
+                        : <OpenButton />
                 }
 
             </div>

@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { InputGroup, FormControl, Input, Button, InputGroupAddon } from 'reactstrap'
-import Modal from './Modal'
+import { Button } from 'reactstrap'
+import ModalChildren from './ModalChildren';
 
-function OpenCashBox() {
+function OpenButton() {
     const [madeClick, setMadeClick] = useState(false)
     const [inputDailyBox, setInputDailyBox] = useState('')
 
@@ -29,29 +29,15 @@ function OpenCashBox() {
             {
                 madeClick
                 &&
-
-                <Modal
+                <ModalChildren
                     setMadeClick={setMadeClick}
+                    handleChange={handleChange}
                     inputDailyBox={inputDailyBox}
-
-                >
-                    <InputGroup>
-                        <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-                        <Input
-                            value={inputDailyBox}
-                            onChange={handleChange}
-                            placeholder="Cantidad"
-                            min={0}
-                            max={100000}
-                            type="number"
-                            step="1" />
-                        <InputGroupAddon addonType="append">.00</InputGroupAddon>
-                    </InputGroup>
-                </Modal>
+                />
 
             }
         </ >
     );
 }
 
-export default OpenCashBox;
+export default OpenButton;

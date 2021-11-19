@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Button } from "reactstrap";
 import CashBoxContext from "../../context/cashBox";
 
-function CloseCashBox({ setNotification }) {
+function CloseButton({ setNotification }) {
     const { setCashBoxOpen, sales } = useContext(CashBoxContext)
 
     const handleClose = () => {
@@ -30,4 +30,4 @@ function CloseCashBox({ setNotification }) {
     );
 }
 
-export default CloseCashBox;
+export default CloseButton;
