@@ -5,6 +5,7 @@ import {
     Redirect,
 } from "react-router-dom";
 import CategoryProvider from "../context/category/Provider.js";
+import ProductProvider from "../context/product/Provider.js";
 
 import AdminLayout from "../layouts/Admin.js";
 import AuthLayout from "../layouts/Auth.js";
@@ -18,7 +19,9 @@ function Routes() {
                 <Route path="/admin" render={(props) =>
                     <PrivateRoute>
                         <CategoryProvider>
-                            <AdminLayout {...props} />
+                            <ProductProvider>
+                                <AdminLayout {...props} />
+                            </ ProductProvider>
                         </CategoryProvider>
                     </PrivateRoute>
                 } />

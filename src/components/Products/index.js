@@ -1,9 +1,18 @@
 import Header from '../Headers/Header'
 import CashBoxProvider from "../../context/cashBox/Provider"
 import { Card, Container, Row } from "reactstrap"
+import ProductsTable from './ProductsTable'
+import ProductContext from '../../context/product'
+import { useContext, useEffect } from 'react'
 
 
 function Products() {
+    const { products } = useContext(ProductContext)
+
+    useEffect(() => {
+
+    }, [products])
+
     return (
         <>
             <Header />
@@ -12,7 +21,8 @@ function Products() {
                     <Row>
                         <div className="col">
                             <Card className="shadow border-0">
-                                <h1>Acá van los productos</h1>
+                                <h1 style={{ textAlign: 'center' }}>Productos</h1>
+                                <ProductsTable products={products} />
                             </Card>
                         </div>
                     </Row>
