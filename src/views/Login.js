@@ -18,8 +18,7 @@
 
 // reactstrap components
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useHistory, useLocation } from "react-router";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import {
   Button,
   Card,

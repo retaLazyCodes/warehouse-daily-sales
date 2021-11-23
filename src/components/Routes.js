@@ -21,7 +21,7 @@ function Routes() {
                         <CategoryProvider>
                             <ProductProvider>
                                 <AdminLayout {...props} />
-                            </ ProductProvider>
+                            </ProductProvider>
                         </CategoryProvider>
                     </PrivateRoute>
                 } />
